@@ -22,7 +22,7 @@ $(call inherit-product, device/motorola/surnia/device.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := surnia
-PRODUCT_NAME := full_surnia
+PRODUCT_NAME := slim_surnia
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := surnia
 PRODUCT_MANUFACTURER := motorola

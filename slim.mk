@@ -1,5 +1,6 @@
 # Copyright (C) 2014 The CyanogenMod Project
-#
+# Copyright (C) 2015 SlimRoms Project
+
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -12,24 +13,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Release name
-PRODUCT_RELEASE_NAME := surnia
-
 # Boot animation
 TARGET_SCREEN_WIDTH := 540
 TARGET_SCREEN_HEIGHT := 960
 
+# Inherit some common Slim stuff.
+$(call inherit-product, vendor/slim/config/common_full_phone.mk)
+
+# Inherit device specifics
 $(call inherit-product, device/motorola/surnia/full_surnia.mk)
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Release name
+PRODUCT_RELEASE_NAME := surnia
 
-
-## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := surnia
-PRODUCT_NAME := cm_surnia
-PRODUCT_BRAND := motorola
-PRODUCT_MODEL := surnia
-PRODUCT_MANUFACTURER := motorola
-
+# TODO: verify fingerprint ID
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
