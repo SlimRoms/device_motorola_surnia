@@ -28,3 +28,5 @@ PRODUCT_RELEASE_NAME := surnia
 
 # TODO: verify fingerprint ID
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
+PRODUCT_GMS_CLIENTID_BASE := android-motorola
