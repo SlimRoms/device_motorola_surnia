@@ -48,6 +48,8 @@ BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 TARGET_KERNEL_SOURCE := kernel/motorola/msm8916
 TARGET_KERNEL_CONFIG := slim_msm8916_defconfig
+KERNEL_TOOLCHAIN_PREFIX := arm-linux-gnueabihf-
+KERNEL_TOOLCHAIN := "$(ANDROID_BUILD_TOP)/prebuilt/$(HOST_OS)-x86/toolchain/linaro-4.9-14.06/bin/"
 
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 
