@@ -114,7 +114,15 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVdecHevc \
     libOmxVenc \
-    libstagefrighthw 
+    libstagefrighthw \
+    qcmediaplayer
+
+ifneq ($(QCPATH),)
+PRODUCT_PACKAGES += libOmxVdecHevc
+endif
+
+PRODUCT_BOOT_JARS += \
+    qcmediaplayer
 
 PRODUCT_PACKAGES += \
     wlan_module_symlink \
