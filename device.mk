@@ -97,7 +97,8 @@ PRODUCT_PACKAGES += \
 
 # Motorola
 PRODUCT_PACKAGES += \
-    charge_only_mode
+    charge_only_mode \
+    libmoto
 
 # Misc
 PRODUCT_PACKAGES += \
