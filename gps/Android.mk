@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+ifeq ($(BOARD_DISABLE_GPS), FALSE)
 LOCAL_PATH := $(call my-dir)
 
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
+endif
