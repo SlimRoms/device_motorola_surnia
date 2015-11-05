@@ -78,6 +78,9 @@ on init
     chown root diag /sys/kernel/dropbox/event
     chown root diag /sys/kernel/dropbox/data
 
+    # BoringSSL hack
+    export LD_PRELOAD "/system/lib/libboringssl-compat.so"
+
     # Configure coredump
     write /proc/sys/kernel/core_pattern "|/system/bin/coredump %e %p %t"
     write /proc/self/coredump_filter "0x7f"
