@@ -16,6 +16,7 @@ persist.rild.nitz_short_ons_0=
 persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
+persist.data.qmi.adb_logmask=0
 persist.radio.rat_on=combine
 persist.mot.gps.assisted=false
 persist.radio.process_sups_ind=0
