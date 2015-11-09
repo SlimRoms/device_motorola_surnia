@@ -8,6 +8,11 @@
     "repository": "SlimRoms/android_external_stlport",
     "target_path": "external/stlport",
     "branch": "mm6.0"
-    }
+  },
+  {
+    "repository": "android_external_connectivity",
+    "target_path": "external/connectivity",
+    "branch": "mm6.0"
+  }
 ]
 

@@ -130,6 +130,7 @@ PRODUCT_PACKAGES += \
 
 # Misc
 PRODUCT_PACKAGES += \
+    libcnefeatureconfig \
     libxml2
 
 # OMX
