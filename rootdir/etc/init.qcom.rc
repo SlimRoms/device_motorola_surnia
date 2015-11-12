@@ -809,6 +809,11 @@ service fuse_usbotg /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/
     class late_start
     disabled
 
+service apanic_annotate /system/bin/sh /system/bin/apanic_annotate.sh build
+    class late_start
+    group log
+    oneshot
+
 on charger
     trigger early-fs
     trigger fs
