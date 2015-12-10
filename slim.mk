@@ -13,9 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Inherit msm8916 common specifics
-$(call inherit-product, device/motorola/msm8916-common/msm8916.mk)
-
 # Inherit device specifics
 $(call inherit-product, device/motorola/surnia/full_surnia.mk)
 
@@ -26,6 +23,6 @@ TARGET_SCREEN_HEIGHT := 960
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := surnia
 PRODUCT_NAME := slim_surnia
-PRODUCT_BRAND := motorola
-PRODUCT_MANUFACTURER := motorola
+PRODUCT_BRAND := Motorola
+PRODUCT_MANUFACTURER := Motorola
 PRODUCT_RELEASE_NAME := surnia
