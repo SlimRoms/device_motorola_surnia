@@ -19,10 +19,8 @@ LOCAL_PATH := device/motorola/surnia
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-
-# Prebuilt
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,${LOCAL_PATH}/prebuilt/system,system)
+# Overlay
+DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
@@ -42,39 +40,24 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.software.print.xml:system/etc/permissions/android.software.print.xml \
-    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+    frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml
 
+# Screen density
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
-DEVICE_PACKAGE_OVERLAYS := \
-    $(LOCAL_PATH)/overlay
-
-PRODUCT_PACKAGES += \
-    gralloc.msm8916 \
-    copybit.msm8916 \
-    hwcomposer.msm8916 \
-    memtrack.msm8916 \
-    power.msm8916
-
-PRODUCT_PACKAGES += \
-    audio.msm8916 \
-    audio_policy.msm8916
-
+# Audio
 PRODUCT_PACKAGES += \
     audiod \
-    audio.primary.msm8916 \
     audio.a2dp.default \
-    audio.usb.default \
+    audio.primary.msm8916 \
     audio.r_submix.default \
+    audio.usb.default \
     libaudio-resampler \
-    tinymix \
     libqcomvisualizer \
-    libqcomvoiceprocessing
-
+    libqcomvoiceprocessing \
+    libqcompostprocbundle \
+    tinymix
 
 PRODUCT_COPY_FILES +=  \
     $(LOCAL_PATH)/audio/audio_effects.conf:system/etc/audio_effects.conf \
@@ -87,20 +70,63 @@ PRODUCT_PACKAGES += \
     camera.msm8916 \
     libmm-qcamera
 
+# Configs
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/data/dsi_config.xml:system/etc/data/dsi_config.xml \
+    $(LOCAL_PATH)/configs/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
+    $(LOCAL_PATH)/configs/data/qmi_config.xml:system/etc/data/qmi_config.xml
+
+# Display
+PRODUCT_PACKAGES += \
+    gralloc.msm8916 \
+    copybit.msm8916 \
+    hwcomposer.msm8916 \
+    memtrack.msm8916
+
+# Ebtables
+PRODUCT_PACKAGES += \
+    ebtables \
+    ethertypes \
+    libebtc
+
 # Filesystem
 PRODUCT_PACKAGES += \
     setup_fs
 
-# Qcom SoftAP & wifi
+# FM
 PRODUCT_PACKAGES += \
-    libQWiFiSoftApCfg
+    FM2 \
+    FMRecord \
+    libqcomfm_jni \
+    qcom.fmradio
 
-# Motorola
+# GPS
 PRODUCT_PACKAGES += \
-    charge_only_mode
+    gps.msm8916
+
+# IRSC
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
+
+# Keystore
+PRODUCT_PACKAGES += \
+    keystore.msm8916
+
+# Lights
+PRODUCT_PACKAGES += \
+    lights.msm8916
+
+# Media
+PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+    $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # Misc
 PRODUCT_PACKAGES += \
+    libbson \
     libxml2
 
 # OMX
@@ -116,39 +142,17 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw 
 
+# Power
 PRODUCT_PACKAGES += \
-    wlan_module_symlink \
-    wlan_persist_symlink \
-    wcnss_service
+    power.msm8916
+
+# Motorola
+PRODUCT_PACKAGES += \
+    charge_only_mode
 
 PRODUCT_PACKAGES += \
     librs_jni \
     com.android.future.usb.accessory
-
-# Ebtables
-PRODUCT_PACKAGES += \
-    ebtables \
-    ethertypes \
-    libebtc
-
-# FM
-PRODUCT_PACKAGES += \
-    FM2 \
-    FMRecord \
-    libqcomfm_jni \
-    qcom.fmradio
-
-# Keystore
-PRODUCT_PACKAGES += \
-    keystore.msm8916
-
-# Lights
-PRODUCT_PACKAGES += \
-    lights.msm8916
-
-# GPS
-PRODUCT_PACKAGES += \
-    gps.msm8916
 
 # CRDA
 PRODUCT_PACKAGES += \
@@ -156,13 +160,6 @@ PRODUCT_PACKAGES += \
     linville.key.pub.pem \
     regdbdump \
     regulatory.bin
-
-# Misc
-PRODUCT_PACKAGES += \
-    curl \
-    libbson \
-    libcurl \
-    tcpdump
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -181,13 +178,11 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     ueventd.qcom.rc
 
-
 # Wifi
 PRODUCT_PACKAGES += \
     p2p_supplicant_overlay.conf \
     wpa_supplicant_overlay.conf
 
-# Wifi
 PRODUCT_PACKAGES += \
     hostapd.accept \
     hostapd_default.conf \
@@ -200,42 +195,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     WCNSS_qcom_wlan_factory_nv.bin
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=240
+PRODUCT_PACKAGES += \
+    libcurl \
+    libQWiFiSoftApCfg \
+    tcpdump \
+    wcnss_service
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.logkit.ctrlcode=0 \
-    ro.usb.mtp=0x2e82 \
-    ro.usb.mtp_adb=0x2e76 \
-    ro.usb.ptp=0x2e83 \
-    ro.usb.ptp_adb=0x2e84 \
-    ro.usb.bpt=0x2ec1 \
-    ro.usb.bpt_adb=0x2ec5 \
-    ro.usb.bpteth=0x2ec3 \
-    ro.usb.bpteth_adb=0x2ec6 \
-    persist.audio.calfile0=/etc/acdbdata/Bluetooth_cal.acdb \
-    persist.audio.calfile1=/etc/acdbdata/General_cal.acdb \
-    persist.audio.calfile2=/etc/acdbdata/Global_cal.acdb \
-    persist.audio.calfile3=/etc/acdbdata/Handset_cal.acdb \
-    persist.audio.calfile4=/etc/acdbdata/Hdmi_cal.acdb \
-    persist.audio.calfile5=/etc/acdbdata/Headset_cal.acdb \
-    persist.audio.calfile6=/etc/acdbdata/Speaker_cal.acdb \
-    persist.sys.qc.sub.rdump.max=3 \
-    mdc_initial_max_retry=10 \
-    drm.service.enabled=true \
-    ro.media.enc.aud.fileformat=amr \
-    ro.media.enc.aud.codec=amrnb \
-    ro.gps.agps_provider=1
-
-# Media
-PRODUCT_PROPERTY_OVERRIDES += \
-    media.stagefright.use-awesome=true
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapsize=128m \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=96m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=2m \
-    dalvik.vm.heapmaxfree=8m
-
+PRODUCT_PACKAGES += \
+    wlan_module_symlink \
+    wlan_persist_symlink
