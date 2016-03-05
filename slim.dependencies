@@ -18,11 +18,6 @@
     "repository": "SlimRoms/android_external_connectivity",
     "target_path": "external/connectivity",
     "branch": "mm6.0"
-  },
-  {
-    "repository": "SlimRoms/android_external_sony_boringssl-compat",
-    "target_path": "external/sony/boringssl-compat",
-    "branch": "mm6.0"
   }
 ]
 
