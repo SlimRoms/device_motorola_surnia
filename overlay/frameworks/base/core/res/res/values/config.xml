@@ -48,4 +48,13 @@
         <item>15</item>
     </integer-array>
 
+    <!-- Enable the option to check proximity sensor when deciding whether to
+         turn the screen on
+         NOTE ! - Enable for devices that have a fast response proximity sensor -->
+    <bool name="config_proximityCheckOnWake">true</bool>
+    <integer name="config_proximityCheckTimeout">300</integer>
+
+    <!-- Doze: can we assume the pickup sensor includes a proximity check? -->
+    <bool name="doze_pickup_performs_proximity_check">true</bool>
+
 </resources>
