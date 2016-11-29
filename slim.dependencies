@@ -1,13 +1,11 @@
 [
   {
     "repository": "SlimRoms/device_motorola_msm8916-common",
-    "target_path": "device/motorola/msm8916-common",
-    "branch": "ng7.0"
+    "target_path": "device/motorola/msm8916-common
   },
   {
     "repository": "SlimRoms/kernel_motorola_msm8916",
-    "target_path": "kernel/motorola/msm8916",
-    "branch": "ng7.0"
+    "target_path": "kernel/motorola/msm8916"
   },
   {
     "repository": "SlimRoms/android_external_stlport",
