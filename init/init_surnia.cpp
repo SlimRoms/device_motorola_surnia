@@ -41,6 +41,7 @@ void gsm_properties(bool msim);
 void cdma_properties();
 
 using android::base::GetProperty;
+using android::init::property_set;
 
 void property_override(char const prop[], char const value[])
 {
