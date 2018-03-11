@@ -35,7 +35,11 @@
 #include <sys/_system_properties.h>
 
 #include "vendor_init.h"
+#include "util.h"
+#include "log.h"
 #include "property_service.h"
+#include <android-base/logging.h>
+#include <android-base/properties.h>
 
 void gsm_properties(bool msim);
 void cdma_properties();
