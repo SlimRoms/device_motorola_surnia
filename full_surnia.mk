@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+# Inherit common Android Go configurations
+$(call inherit-product, build/target/product/go_defaults.mk)
+
 # Inherit from surnia device
 $(call inherit-product, device/motorola/surnia/device.mk)
 
